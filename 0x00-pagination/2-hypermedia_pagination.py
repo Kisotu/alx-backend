@@ -48,7 +48,7 @@ class Server:
             return data[start:end]
         except IndexError:
             return []
-        
+
     def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict:
         """Gets information about a page.
         """

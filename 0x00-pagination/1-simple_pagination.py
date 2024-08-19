@@ -35,12 +35,15 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        """Gets a page of data.
-        """
-        assert type(page) == int and type(page_size) == int
-        assert page > 0 and page_size > 0
-        start, end = index_range(page, page_size)
+        """Gets a page of the dataset"""
+        assert type(page) is int and page > 0
+        assert type(page_size) is int and page_size > 0
+
+        # get the data from the csv
         data = self.dataset()
-        if start > len(data):
+
+        try:
+            start, end = index_range(page, page_size)
+            return data[start:end]
+        except IndexError:
             return []
-        return data[start:end]
